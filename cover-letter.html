@@ -18,14 +18,43 @@
             box-sizing: border-box;
         }
 
-        /* BODY - The warm beige background that covers the entire page */
+        /* ========================================
+           CSS VARIABLES - Color System for Light/Dark Mode
+           ======================================== */
+        /* These are like color "shortcuts" that we can change all at once */
+        :root {
+            /* LIGHT MODE COLORS (Default) */
+            --bg-color: #F9F3EF; /* Warm beige background */
+            --text-color: #2B1F38; /* Deep purple-black text */
+            --text-muted: rgba(43, 31, 56, 0.5); /* Muted text at 50% opacity */
+            --photo-bg: #e0e0e0; /* Light gray for photo placeholder */
+            --accent-red: #E74C58; /* Warm red for highlights */
+            --toggle-bg: rgba(43, 31, 56, 0.1); /* Toggle button background */
+            --toggle-icon: #2B1F38; /* Toggle icon color */
+        }
+
+        /* DARK MODE COLORS - Applied when .dark-mode class is on body */
+        body.dark-mode {
+            --bg-color: #1a1425; /* Deep purple-black background */
+            --text-color: #F9F3EF; /* Warm beige text (inverted!) */
+            --text-muted: rgba(249, 243, 239, 0.5); /* Muted light text */
+            --photo-bg: #2d2438; /* Darker gray for photo placeholder */
+            --accent-red: #ff6b7a; /* Brighter red for dark mode */
+            --toggle-bg: rgba(249, 243, 239, 0.1); /* Light toggle background */
+            --toggle-icon: #F9F3EF; /* Light toggle icon */
+        }
+
+        /* BODY - The background that covers the entire page */
         body {
             font-family: 'JetBrains Mono', monospace; /* Typewriter-style font */
-            background-color: #f5ece3; /* Warm beige color from Figma */
-            color: #22223b; /* Dark blue-gray text color */
+            /* UPDATED: Now uses CSS variable that changes with dark mode */
+            background-color: var(--bg-color); 
+            color: var(--text-color);
             padding: 32px; /* Space around the edges */
             font-size: 12px; /* Base font size - increased by 2px for better readability */
             line-height: 20px; /* Line height for comfortable reading */
+            /* SMOOTH TRANSITION - Makes color changes gradual, not instant */
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         /* CONTAINER - The main document area (595px width matches the Figma design) */
@@ -47,9 +76,10 @@
 
         /* PHOTO - Square photo at top left (not circular like before!) */
         .photo {
-            width: 97px; /* Exact size from Figma */
-            height: 97px;
-            background-color: #e0e0e0; /* Light gray placeholder */
+            width: 172px; /* UPDATED: Now fills entire header width */
+            height: 172px; /* UPDATED: Keeps square proportions */
+            /* UPDATED: Now uses CSS variable for dark mode support */
+            background-color: var(--photo-bg);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -57,6 +87,7 @@
             color: #666;
             text-align: center;
             overflow: hidden; /* Crops image to fit */
+            transition: background-color 0.3s ease; /* Smooth color transition */
         }
 
         /* When you add a real photo, this styles it */
@@ -70,12 +101,14 @@
         .contact-info {
             font-size: 10px; /* Small text - increased by 2px */
             line-height: normal; /* Tighter line spacing */
-            color: #22223b;
+            /* UPDATED: Now uses CSS variable for dark mode support */
+            color: var(--text-color);
         }
 
         /* Links in the contact info */
         .contact-info a {
-            color: #22223b; /* Same color as text */
+            /* UPDATED: Now uses CSS variable for dark mode support */
+            color: var(--text-color);
             text-decoration: underline; /* Underlined links */
         }
 
@@ -87,7 +120,8 @@
         .date {
             font-size: 12px; /* Increased by 2px */
             margin-bottom: 47px; /* Exact spacing from Figma to greeting */
-            color: #22223b;
+            /* UPDATED: Now uses CSS variable for dark mode support */
+            color: var(--text-color);
         }
 
         /* LETTER CONTENT - The main body of the letter */
@@ -140,20 +174,6 @@
             margin-top: 5px;
         }
 
-        /* FOOTNOTE - The small italic text at the very bottom */
-        .footnote {
-            position: absolute; /* Positions it at the bottom */
-            bottom: 38px; /* Distance from bottom */
-            left: 0;
-            font-size: 10px; /* Increased by 2px for better readability */
-            font-style: italic; /* Italic text */
-            color: rgba(34, 34, 59, 0.6); /* Semi-transparent text */
-        }
-
-        /* FOOTNOTE LINKS - Make sure links show pointer cursor */
-        .footnote a {
-            cursor: pointer; /* Hand cursor for clickable links */
-        }
 
         /* HOVER EFFECT - Changes color when mouse hovers over the skills text */
         .highlight-skills {
@@ -162,9 +182,10 @@
             /* cursor stays as default text cursor (no pointer hand) */
         }
 
-        /* When mouse hovers over the skills text, change color to purple */
+        /* When mouse hovers over the skills text, change color to accent red */
         .highlight-skills:hover {
-            color: #FF0800; /* Bright red color */
+            /* UPDATED: Now uses CSS variable for dark mode support */
+            color: var(--accent-red);
         }
 
         /* ========================================
@@ -197,7 +218,58 @@
 
         /* Optional: Add subtle hover effect on hoverable words */
         .hoverable-word:hover {
-            color: #FF0800; /* Same red as highlight-skills */
+            /* UPDATED: Now uses CSS variable for dark mode support */
+            color: var(--accent-red);
+        }
+
+        /* ========================================
+           DARK MODE TOGGLE BUTTON - Top Right Corner
+           ======================================== */
+        
+        /* TOGGLE CONTAINER - Holds the toggle button */
+        .theme-toggle {
+            position: absolute; /* Positioned relative to the .container */
+            top: 0; /* Align with top of container */
+            right: 0; /* Align with right side of container */
+            z-index: 1001; /* Above emoji (which is z-index: 1000) */
+            background-color: var(--toggle-bg); /* Subtle background */
+            border-radius: 20px; /* Rounded pill shape */
+            padding: 6px 12px; /* Padding inside the button */
+            cursor: pointer; /* Hand cursor to show it's clickable */
+            /* UPDATED: Added opacity to transition for smooth fade out */
+            transition: all 0.3s ease, opacity 0.3s ease;
+            display: flex; /* Flexbox for centering icon */
+            align-items: center; /* Vertically center */
+            justify-content: center; /* Horizontally center */
+            gap: 4px; /* Small gap between icon and text */
+            font-size: 16px; /* Icon size */
+            user-select: none; /* Prevent text selection when clicking */
+            opacity: 1; /* Fully visible by default */
+        }
+
+        /* HIDE TOGGLE - When emoji is visible, toggle fades to 0% */
+        .theme-toggle.hidden {
+            opacity: 0; /* Completely invisible */
+            pointer-events: none; /* Can't be clicked when hidden */
+        }
+
+        /* HOVER EFFECT - Slightly more visible when you hover */
+        .theme-toggle:hover {
+            background-color: var(--toggle-bg);
+            opacity: 0.8;
+        }
+
+        /* TOGGLE ICON - The sun/moon icon */
+        .theme-toggle .icon {
+            line-height: 1; /* Remove extra spacing */
+            color: var(--toggle-icon);
+        }
+
+        /* TOGGLE TEXT - Optional label (we'll keep it minimal) */
+        .theme-toggle .label {
+            font-size: 10px;
+            color: var(--toggle-icon);
+            font-family: 'JetBrains Mono', monospace;
         }
 
         /* RESPONSIVE - Adjustments for smaller screens */
@@ -222,6 +294,11 @@
         
         <!-- EMOJI DISPLAY BOX - Shows dynamic emoji in top-right corner of container -->
         <div class="emoji-display" id="emojiDisplay">🏙️</div>
+        
+        <!-- DARK MODE TOGGLE - Button to switch between light and dark mode -->
+        <div class="theme-toggle" id="themeToggle">
+            <span class="icon" id="themeIcon">☀️</span>
+        </div>
         
         <!-- HEADER: Photo and Contact Information -->
         <div class="header">
@@ -294,8 +371,6 @@
             </div>
         </div>
 
-        <!-- FOOTNOTE at bottom -->
-        <p class="footnote">*See where I've got inspired: <a href="gallery.html" class="hoverable-word" data-emoji="🖼️">Letters</a>, <a href="https://www.linkedin.com/posts/felixleezd_i-have-a-new-website-i-am-not-a-developer-activity-7389671927780536320-Zp0z?utm_source=share&utm_medium=member_ios&rcm=ACoAADF3EToBGtx_Pb3b-39xRwtU8r3k_ik8j1A" target="_blank" class="hoverable-word" data-emoji="↗️">Felix Lee's Post</a></p>
 
     </div>
 
@@ -316,9 +391,10 @@
          * 4. When mouse leaves a word, hide emoji
          */
 
-        // STEP 1: Get reference to the emoji display element
-        // This is like telling JavaScript "hey, I want to control this element"
+        // STEP 1: Get references to emoji display AND theme toggle
+        // This is like telling JavaScript "hey, I want to control these elements"
         const emojiDisplay = document.getElementById('emojiDisplay');
+        const themeToggleButton = document.getElementById('themeToggle');
 
         // STEP 2: Find all hoverable words in the document
         // querySelectorAll finds ALL elements that match the class name
@@ -339,6 +415,9 @@
                 // Make the emoji visible by adding the 'visible' class
                 // This triggers the opacity transition from 0 to 1
                 emojiDisplay.classList.add('visible');
+                
+                // HIDE THE TOGGLE - When emoji appears, toggle fades to 0%
+                themeToggleButton.classList.add('hidden');
             });
 
             // MOUSELEAVE EVENT - Triggers when mouse moves away from the word
@@ -346,6 +425,9 @@
                 // Hide the emoji by removing the 'visible' class
                 // This triggers the opacity transition from 1 to 0
                 emojiDisplay.classList.remove('visible');
+                
+                // SHOW THE TOGGLE - When emoji disappears, toggle fades back to 100%
+                themeToggleButton.classList.remove('hidden');
             });
         });
 
@@ -359,6 +441,82 @@
          * For example:
          * <span data-emoji="🏙️">Tel Aviv</span>
          * When you hover, JavaScript reads data-emoji and shows 🏙️
+         */
+
+        /* ========================================
+           DARK MODE TOGGLE SYSTEM
+           ======================================== */
+        /**
+         * DARK MODE TOGGLE
+         * ----------------
+         * This code makes the toggle button switch between light and dark mode
+         * and remembers your choice even after you close the browser!
+         * 
+         * HOW IT WORKS:
+         * 1. Check if user has a saved preference (from previous visit)
+         * 2. Apply dark mode if preference is saved as "dark"
+         * 3. When toggle is clicked, switch modes and save preference
+         * 4. Update the sun/moon icon to match current mode
+         */
+
+        // STEP 1: Get references (we already have themeToggleButton from above)
+        const themeIcon = document.getElementById('themeIcon');
+        const body = document.body;
+        // Get reference to the profile photo image element
+        const profilePhoto = document.querySelector('.photo img');
+
+        // STEP 2: Check if user has a saved preference
+        // localStorage is like a mini database in the browser that saves data
+        const savedTheme = localStorage.getItem('theme');
+
+        // STEP 3: Apply saved preference on page load
+        if (savedTheme === 'dark') {
+            // If saved preference is dark, apply dark mode immediately
+            body.classList.add('dark-mode');
+            themeIcon.textContent = '🌙'; // Moon icon for dark mode
+            // CHANGE PHOTO - Switch to funny face in dark mode
+            profilePhoto.src = 'Files/funny_face.png';
+        } else {
+            // If no preference or light mode, use light mode (default)
+            body.classList.remove('dark-mode');
+            themeIcon.textContent = '☀️'; // Sun icon for light mode
+            // CHANGE PHOTO - Use normal photo in light mode
+            profilePhoto.src = 'Files/mary-daniel.png';
+        }
+
+        // STEP 4: Add click event listener to the toggle button
+        // We use themeToggleButton that was already declared above
+        themeToggleButton.addEventListener('click', function() {
+            // Check if dark mode is currently active
+            const isDarkMode = body.classList.contains('dark-mode');
+            
+            if (isDarkMode) {
+                // SWITCH TO LIGHT MODE
+                body.classList.remove('dark-mode'); // Remove dark mode class
+                themeIcon.textContent = '☀️'; // Change icon to sun
+                localStorage.setItem('theme', 'light'); // Save preference
+                // CHANGE PHOTO - Back to normal photo
+                profilePhoto.src = 'Files/mary-daniel.png';
+            } else {
+                // SWITCH TO DARK MODE
+                body.classList.add('dark-mode'); // Add dark mode class
+                themeIcon.textContent = '🌙'; // Change icon to moon
+                localStorage.setItem('theme', 'dark'); // Save preference
+                // CHANGE PHOTO - Switch to funny face!
+                profilePhoto.src = 'Files/funny_face.png';
+            }
+        });
+
+        /**
+         * EDUCATIONAL NOTE:
+         * -----------------
+         * localStorage.setItem('theme', 'dark') saves data in the browser
+         * localStorage.getItem('theme') retrieves the saved data
+         * This data persists even after closing the browser!
+         * 
+         * classList.add() and classList.remove() add/remove CSS classes
+         * When we add the 'dark-mode' class to body, all our CSS variables change
+         * This is why the colors switch automatically!
          */
     </script>
 </body>
