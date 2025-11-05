@@ -9,6 +9,7 @@ on:
       - venn
       - lama-ai
       - unit
+      - mavens
       - "*"
 
 jobs:
