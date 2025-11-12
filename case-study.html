@@ -128,9 +128,13 @@
             width: 100%;
             height: 374px;
             margin-bottom: 20px;
-            background-color: var(--photo-bg);
+            background-color: #FCFCFC; /* Light background matching Figma design */
+            border: 1px solid #ffffff; /* Thin white border */
+            border-radius: 4px; /* Corner radius of 4px */
+            padding: 8px; /* Padding around the image container */
             overflow: hidden;
             position: relative;
+            box-sizing: border-box; /* Ensure padding is included in width calculation */
         }
 
         .hero-image img {
@@ -199,13 +203,16 @@
         .challenge-visual {
             width: 222px;
             height: 222px;
-            background-color: #E8E0F0;
-            border: 1px solid #9B7FB8;
+            background-color: #FCFCFC; /* Light background matching Figma design */
+            border: 1px solid #ffffff; /* Thin white border */
+            border-radius: 4px; /* Corner radius of 4px */
+            padding: 8px; /* Padding around the container */
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             flex-shrink: 0;
+            box-sizing: border-box; /* Ensure padding is included in width calculation */
         }
 
         .challenge-content {
@@ -281,12 +288,16 @@
             position: relative;
             width: 100%;
             height: 374px;
-            background-color: var(--outcome-bg-green);
+            background-color: #FCFCFC; /* Light background matching Figma design */
+            border: 1px solid #ffffff; /* Thin white border */
+            border-radius: 4px; /* Corner radius of 4px */
+            padding: 8px; /* Padding around the image container */
             margin-bottom: 0;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            box-sizing: border-box; /* Ensure padding is included in width calculation */
         }
 
         .outcome-image-large img,
@@ -315,6 +326,11 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            background-color: #FCFCFC; /* Light background matching Figma design */
+            border: 1px solid #ffffff; /* Thin white border */
+            border-radius: 4px; /* Corner radius of 4px */
+            padding: 8px; /* Padding around the image container */
+            box-sizing: border-box; /* Ensure padding is included in width calculation */
         }
 
         .outcome-image-large-grid {
@@ -325,19 +341,15 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            background-color: #FCFCFC; /* Light background matching Figma design */
+            border: 1px solid #ffffff; /* Thin white border */
+            border-radius: 4px; /* Corner radius of 4px */
+            padding: 8px; /* Padding around the image container */
+            box-sizing: border-box; /* Ensure padding is included in width calculation */
         }
 
-        .outcome-image-small.yellow {
-            background-color: var(--outcome-bg-yellow);
-        }
-
-        .outcome-image-small.brown {
-            background-color: var(--outcome-bg-brown);
-        }
-
-        .outcome-image-large-grid.yellow {
-            background-color: var(--outcome-bg-yellow);
-        }
+        /* Removed colored background classes - all containers now use light grey */
+        /* The .yellow and .brown classes are no longer needed as all containers use the same styling */
 
         .outcome-image-small img {
             width: 240px;
@@ -653,7 +665,7 @@
         
         <!-- BACK NAVIGATION -->
         <div class="nav-back">
-            <a href="cover-letter.html" class="nav-link">[&lt;Back]</a>
+            <a href="cover-letter.html" class="nav-link">Back</a>
         </div>
 
         <!-- CASE STUDY HEADER -->
