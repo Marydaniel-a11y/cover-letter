@@ -2109,7 +2109,7 @@
         });
 
         /* ========================================
-           AUTO-SHOW PHOTO TOOLTIP AFTER 7 SECONDS
+           AUTO-SHOW PHOTO TOOLTIP AFTER 8-9 SECONDS
            (Only if user hasn't navigated away - shows once per browser session)
            ======================================== */
         
@@ -2186,11 +2186,13 @@
             });
         });
         
-        // Set timeout to show tooltip after 7 seconds (only if no navigation occurred)
+        // Set timeout to show tooltip after 8-9 seconds (only if no navigation occurred)
+        // Generate random delay between 8000ms (8s) and 9000ms (9s)
         // Only set timeout if tooltip hasn't been shown before (in this session)
         if (!tooltipAlreadyShown) {
-            console.log('Setting timeout for tooltip - will show in 7 seconds if no navigation');
-            setTimeout(showPhotoTooltipAuto, 7000);
+            const randomDelay = Math.floor(Math.random() * 1000) + 8000; // Random between 8000-9000ms
+            console.log('Setting timeout for tooltip - will show in ' + (randomDelay / 1000) + ' seconds if no navigation');
+            setTimeout(showPhotoTooltipAuto, randomDelay);
         } else {
             console.log('Tooltip already shown in this session - skipping');
         }
