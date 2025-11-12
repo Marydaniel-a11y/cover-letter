@@ -45,7 +45,7 @@
             font-family: 'JetBrains Mono', monospace;
             background-color: var(--bg-color); 
             color: var(--text-color);
-            padding: 32px;
+            padding: 60px 32px 32px 32px; /* Top padding for CTA teaser, then standard padding */
             font-size: 12px;
             line-height: 20px;
             transition: background-color 0.3s ease, color 0.3s ease;
@@ -508,118 +508,169 @@
         }
 
         /* ========================================
-           STICKY BOTTOM CTA TEASER
+           STICKY TOP CTA TEASER
            ======================================== */
         
-        /* Sticky bottom teaser container */
+        /* Sticky top teaser container */
         .cta-teaser-container {
             position: fixed;
-            bottom: 0;
+            top: 0;
             left: 0;
             right: 0;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            z-index: 1000;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-start;
+            z-index: 999; /* Lower than theme toggle (1001) to avoid overlap */
             pointer-events: none;
         }
 
-        /* Expandable panel above teaser */
+        /* Wrapper for teaser to enable relative positioning of panel */
+        .cta-teaser-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Expandable panel to the right of teaser - styled as direct link */
         .cta-expandable-panel {
-            width: 100%;
-            max-width: 595px; /* Match container width */
+            position: absolute;
+            top: 0;
+            left: 100%; /* Start from right edge of teaser */
+            margin-left: -1px; /* Overlap border for seamless connection */
+            width: auto;
+            min-width: 280px;
+            max-width: 595px; /* Match page content width */
+            height: 100%; /* Match teaser height */
             background-color: var(--bg-color);
             border: 1px solid rgba(43, 31, 56, 0.1);
-            border-bottom: none;
-            border-radius: 12px 12px 0 0;
-            padding: 20px;
-            box-shadow: 0 -4px 20px rgba(43, 31, 56, 0.1);
+            border-left: none;
+            border-radius: 0 0 12px 0;
+            padding: 0 20px;
+            box-shadow: 4px 4px 20px rgba(43, 31, 56, 0.1);
             opacity: 0;
-            max-height: 0;
+            max-width: 0;
             overflow: hidden;
-            transform: translateY(100%);
+            white-space: nowrap;
             pointer-events: none;
-            transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        padding 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: flex;
+            align-items: center; /* Vertically center content */
+            text-decoration: none;
+            color: var(--text-color);
             font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        max-width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        padding-left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        padding-right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        background-color 0.2s ease;
         }
 
         .cta-expandable-panel.expanded {
             opacity: 1;
-            max-height: 200px;
-            transform: translateY(0);
+            max-width: 595px;
+            padding-left: 20px;
+            padding-right: 20px;
             pointer-events: auto;
+            white-space: normal;
         }
 
-        /* CTA button in expandable panel */
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 12px;
-            padding: 8px 12px;
-            border-radius: 8px;
-            border: 1px solid rgba(43, 31, 56, 0.15);
-            background-color: rgba(43, 31, 56, 0.03);
-            transition: all 0.2s ease;
-            width: fit-content;
+        .cta-expandable-panel:hover {
+            background-color: rgba(43, 31, 56, 0.02);
         }
 
-        .cta-button:hover {
-            background-color: rgba(43, 31, 56, 0.08);
-            border-color: rgba(43, 31, 56, 0.25);
-            transform: translateX(2px);
+        body.dark-mode .cta-expandable-panel:hover {
+            background-color: rgba(249, 243, 239, 0.03);
         }
 
-        body.dark-mode .cta-button {
-            border-color: rgba(249, 243, 239, 0.2);
-            background-color: rgba(249, 243, 239, 0.05);
-        }
-
-        body.dark-mode .cta-button:hover {
-            background-color: rgba(249, 243, 239, 0.1);
-            border-color: rgba(249, 243, 239, 0.3);
-        }
-
-        .cta-button-arrow {
+        /* Arrow icon in panel */
+        .cta-panel-arrow {
+            margin-left: 8px;
             font-size: 14px;
             transition: transform 0.2s ease;
+            flex-shrink: 0;
         }
 
-        .cta-button:hover .cta-button-arrow {
+        .cta-expandable-panel:hover .cta-panel-arrow {
             transform: translateX(2px);
         }
 
-        /* Sticky bottom teaser - always visible */
+        /* Sticky top teaser - always visible */
         .cta-teaser {
             width: 100%;
             max-width: 595px; /* Match container width */
             background-color: var(--bg-color);
             border: 1px solid rgba(43, 31, 56, 0.1);
-            border-radius: 12px 12px 0 0;
+            border-radius: 0 0 12px 12px; /* Round bottom corners */
             padding: 12px 20px;
-            box-shadow: 0 -4px 20px rgba(43, 31, 56, 0.1);
+            box-shadow: 0 4px 20px rgba(43, 31, 56, 0.1);
             cursor: pointer;
             font-family: 'JetBrains Mono', monospace;
             font-size: 12px;
             color: var(--text-color);
             text-align: center;
             opacity: 0;
-            transform: translateY(100%);
+            transform: translateY(-100%);
             pointer-events: none;
             transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                        transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        border-radius 0.3s ease;
             user-select: none;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px; /* Space between text and caret */
+        }
+
+        /* When panel is expanded, adjust teaser border-radius */
+        .cta-teaser-wrapper:has(.cta-expandable-panel.expanded) .cta-teaser {
+            border-radius: 0 0 0 12px; /* Only round bottom-left when panel is open */
+        }
+
+        /* Caret indicator */
+        .cta-teaser-caret {
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 4px 0 4px 6px; /* Creates right-pointing triangle */
+            border-color: transparent transparent transparent var(--text-color);
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            flex-shrink: 0;
+            opacity: 0.7;
+        }
+
+        /* Rotate caret to point left when panel is expanded */
+        .cta-teaser-wrapper:has(.cta-expandable-panel.expanded) .cta-teaser-caret {
+            transform: rotate(180deg); /* Flip to point left */
+        }
+
+        /* Slightly increase opacity on hover */
+        .cta-teaser:hover .cta-teaser-caret {
+            opacity: 1;
         }
 
         .cta-teaser.visible {
             opacity: 1;
             transform: translateY(0);
             pointer-events: auto;
+        }
+
+        /* Subtle bounce animation triggered on scroll */
+        @keyframes subtleBounce {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(8px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .cta-teaser.scroll-bounce {
+            animation: subtleBounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
         }
 
         .cta-teaser:hover {
@@ -630,23 +681,81 @@
             background-color: rgba(249, 243, 239, 0.03);
         }
 
-        /* Responsive: Adjust padding on smaller screens */
-        @media (max-width: 768px) {
-            .cta-teaser,
+        /* Medium screens: Adjust panel to prevent overflow */
+        @media (max-width: 1024px) and (min-width: 769px) {
             .cta-expandable-panel {
-                max-width: 100%;
-                border-radius: 0;
+                max-width: min(595px, calc(100vw - 50% - 300px)); /* Match content width but prevent overflow */
             }
             
-            .cta-expandable-panel {
-                padding: 16px;
-            }
-            
-            .cta-teaser {
-                padding: 10px 16px;
-                font-size: 11px;
+            .cta-expandable-panel.expanded {
+                max-width: min(595px, calc(100vw - 50% - 300px));
             }
         }
+
+        /* Responsive: Adjust padding on smaller screens */
+        @media (max-width: 768px) {
+            .cta-teaser {
+                max-width: 100%;
+                border-radius: 0 0 12px 12px;
+                padding: 10px 16px;
+                font-size: 11px;
+                gap: 6px; /* Slightly smaller gap on mobile */
+            }
+            
+            /* Slightly smaller caret on mobile */
+            .cta-teaser-caret {
+                border-width: 3px 0 3px 5px;
+            }
+            
+            /* On mobile, panel expands downward instead of to the right */
+            .cta-expandable-panel {
+                position: absolute;
+                top: 100%; /* Position below teaser */
+                left: 0;
+                right: 0;
+                margin-left: 0;
+                width: 100%;
+                max-width: 100%;
+                min-width: auto;
+                height: auto; /* Reset height for mobile */
+                border-left: 1px solid rgba(43, 31, 56, 0.1);
+                border-top: none;
+                border-radius: 0 0 12px 12px;
+                padding: 0 16px;
+                box-shadow: 0 4px 20px rgba(43, 31, 56, 0.1);
+                max-height: 0;
+                overflow: hidden;
+                white-space: nowrap;
+                display: flex;
+                align-items: flex-start; /* Align to top on mobile */
+            }
+            
+            .cta-expandable-panel.expanded {
+                max-width: 100%;
+                max-height: 200px;
+                padding-top: 12px;
+                padding-bottom: 12px;
+                height: auto; /* Allow height to grow on mobile */
+            }
+            
+            /* Reset teaser border-radius on mobile when expanded */
+            .cta-teaser-wrapper:has(.cta-expandable-panel.expanded) .cta-teaser {
+                border-radius: 0;
+            }
+        }
+        
+        /* On very small screens, ensure panel doesn't overflow */
+        @media (max-width: 480px) {
+            .cta-expandable-panel {
+                font-size: 11px;
+            }
+            
+            .cta-button {
+                font-size: 11px;
+                padding: 6px 10px;
+            }
+        }
+
 
         /* ========================================
            CONTENT SWITCHER
@@ -731,7 +840,7 @@
         /* RESPONSIVE */
         @media (max-width: 768px) {
             body {
-                padding: 16px;
+                padding: 50px 16px 16px 16px; /* Top padding for CTA teaser, then standard padding */
                 font-size: 11px;
                 line-height: 18px;
             }
@@ -939,19 +1048,20 @@
 
     </div>
 
-    <!-- STICKY BOTTOM CTA TEASER -->
+    <!-- STICKY TOP CTA TEASER -->
     <div class="cta-teaser-container">
-        <!-- Expandable panel with CTA button -->
-        <div class="cta-expandable-panel" id="ctaExpandablePanel">
-            <a href="case-study.html" class="cta-button">
-                See how I improved onboarding
-                <span class="cta-button-arrow">→</span>
+        <div class="cta-teaser-wrapper">
+            <!-- Sticky teaser - always visible -->
+            <div class="cta-teaser" id="ctaTeaser">
+                👀 Curious what my design work looks like?
+                <span class="cta-teaser-caret"></span>
+            </div>
+            
+            <!-- Expandable panel to the right of teaser - direct link -->
+            <a href="case-study.html" class="cta-expandable-panel" id="ctaExpandablePanel">
+                How I redesigned onboarding at Lightricks' Content Lab
+                <span class="cta-panel-arrow">→</span>
             </a>
-        </div>
-        
-        <!-- Sticky teaser - always visible -->
-        <div class="cta-teaser" id="ctaTeaser">
-            👀 Curious what this looks like in action?
         </div>
     </div>
 
@@ -1054,7 +1164,7 @@
         });
 
         /* ========================================
-           STICKY BOTTOM CTA TEASER SYSTEM
+           STICKY TOP CTA TEASER SYSTEM
            ======================================== */
         const ctaTeaser = document.getElementById('ctaTeaser');
         const ctaExpandablePanel = document.getElementById('ctaExpandablePanel');
@@ -1064,13 +1174,15 @@
         const randomDelay = Math.floor(Math.random() * 1000) + 2000;
         
         setTimeout(function() {
-            // Add 'visible' class to trigger smooth slide-up animation from bottom
+            // Add 'visible' class to trigger smooth slide-down animation from top
             ctaTeaser.classList.add('visible');
         }, randomDelay);
 
         // Teaser click functionality - toggles expandable panel
-        if (ctaTeaser) {
-            ctaTeaser.addEventListener('click', function() {
+        if (ctaTeaser && ctaExpandablePanel) {
+            ctaTeaser.addEventListener('click', function(e) {
+                e.preventDefault(); // Prevent any default behavior
+                e.stopPropagation(); // Stop event bubbling
                 // Toggle expanded class on panel
                 const isExpanded = ctaExpandablePanel.classList.contains('expanded');
                 
@@ -1084,8 +1196,53 @@
             });
         }
 
-        // Click outside to collapse (optional - click on teaser again to collapse)
-        // The teaser click handler above handles the toggle
+        /* ========================================
+           SCROLL-TRIGGERED BOUNCE ANIMATION
+           ======================================== */
+        // Track if bounce animation has been triggered to avoid repeated animations
+        let bounceTriggered = false;
+        
+        // Function to check scroll position and trigger bounce
+        function checkScrollForBounce() {
+            // Only trigger once
+            if (bounceTriggered) return;
+            
+            // Get the signature section element (end of cover letter)
+            const signatureSection = document.querySelector('.signature-section');
+            if (!signatureSection || !ctaTeaser) return;
+            
+            // Get the position of the signature section relative to viewport
+            const signatureRect = signatureSection.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            
+            // Trigger bounce when signature section has scrolled past the viewport
+            // (when its bottom edge is above the viewport bottom)
+            if (signatureRect.bottom < windowHeight && ctaTeaser.classList.contains('visible')) {
+                // Add bounce animation class
+                ctaTeaser.classList.add('scroll-bounce');
+                bounceTriggered = true;
+                
+                // Remove the animation class after animation completes to allow re-triggering if needed
+                setTimeout(function() {
+                    ctaTeaser.classList.remove('scroll-bounce');
+                }, 600); // Match animation duration
+            }
+        }
+        
+        // Throttle scroll events for better performance
+        let scrollTimeout;
+        window.addEventListener('scroll', function() {
+            // Clear existing timeout
+            if (scrollTimeout) {
+                clearTimeout(scrollTimeout);
+            }
+            
+            // Check scroll position after a short delay (throttling)
+            scrollTimeout = setTimeout(checkScrollForBounce, 50);
+        }, { passive: true });
+        
+        // Also check on initial load in case user is already scrolled down
+        checkScrollForBounce();
     </script>
 </body>
 </html>
