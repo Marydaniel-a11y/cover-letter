@@ -102,6 +102,84 @@
             margin-top: 24px;
         }
 
+        /* FIGMA HANDOFF SECTION */
+        .figma-handoff-section {
+            margin-top: 32px;
+            margin-bottom: 24px;
+        }
+
+        .figma-handoff-card {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #FCFCFC; /* Light background matching design */
+            border: 1px solid rgba(43, 31, 56, 0.1);
+            border-radius: 8px; /* Rounded corners */
+            padding: 20px 24px;
+            box-shadow: 0 2px 8px rgba(43, 31, 56, 0.08); /* Soft shadow */
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.2s ease;
+            gap: 16px;
+        }
+
+        .figma-handoff-card:hover {
+            box-shadow: 0 4px 12px rgba(43, 31, 56, 0.12);
+            transform: translateY(-1px);
+            background-color: rgba(43, 31, 56, 0.02);
+        }
+
+        body.dark-mode .figma-handoff-card {
+            background-color: rgba(249, 243, 239, 0.03);
+            border-color: rgba(249, 243, 239, 0.15);
+        }
+
+        body.dark-mode .figma-handoff-card:hover {
+            background-color: rgba(249, 243, 239, 0.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .figma-handoff-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .figma-handoff-text {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        .figma-handoff-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(43, 31, 56, 0.05);
+            border-radius: 6px;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+            color: var(--text-color);
+        }
+
+        .figma-handoff-card:hover .figma-handoff-icon {
+            background-color: rgba(43, 31, 56, 0.1);
+            transform: scale(1.05);
+        }
+
+        body.dark-mode .figma-handoff-icon {
+            background-color: rgba(249, 243, 239, 0.1);
+        }
+
+        body.dark-mode .figma-handoff-card:hover .figma-handoff-icon {
+            background-color: rgba(249, 243, 239, 0.15);
+        }
+
         /* HEADER SECTION */
         .case-header {
             display: flex;
@@ -807,6 +885,27 @@
             body.dark-mode .theme-toggle:hover .toggle-knob {
                 transform: translateX(20px) scale(1.05);
             }
+
+            /* Figma handoff section mobile */
+            .figma-handoff-card {
+                padding: 16px 20px;
+                gap: 12px;
+            }
+
+            .figma-handoff-text {
+                font-size: 13px;
+                line-height: 18px;
+            }
+
+            .figma-handoff-icon {
+                width: 36px;
+                height: 36px;
+            }
+
+            .figma-handoff-icon svg {
+                width: 18px;
+                height: 18px;
+            }
         }
 
         /* ========================================
@@ -1215,6 +1314,22 @@
                 <p>&nbsp;</p>
                 <p>Users who explored the sample video flow were significantly more likely to <strong>complete a full generation</strong>, validating our intuition that curiosity drives commitment.</p>
             </div>
+        </div>
+
+        <!-- FIGMA HANDOFF SECTION -->
+        <div class="figma-handoff-section">
+            <a href="https://www.figma.com/design/hzHDAfFbCRU91LHP0fXyTQ/%E2%86%AA-Onboarding-1.0?node-id=0-1&t=ttpgXWxuSdzzZee0-1" target="_blank" class="figma-handoff-card">
+                <div class="figma-handoff-content">
+                    <p class="figma-handoff-text">Want to explore the full Figma handoff? Dive into the file.</p>
+                </div>
+                <div class="figma-handoff-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 13v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M15 3h6v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M10 14L21 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </a>
         </div>
 
         <!-- NEXT NAVIGATION -->
