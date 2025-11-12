@@ -808,6 +808,182 @@
                 transform: translateX(20px) scale(1.05);
             }
         }
+
+        /* ========================================
+           COMING SOON MODAL
+           ======================================== */
+        
+        /* Modal overlay - soft background that covers entire screen */
+        .coming-soon-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(43, 31, 56, 0.4); /* Soft, semi-transparent background */
+            z-index: 3000; /* Higher than other elements */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            padding: 20px;
+            backdrop-filter: blur(2px); /* Subtle blur effect */
+        }
+        
+        /* Show modal when active */
+        .coming-soon-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Dark mode overlay adjustment */
+        body.dark-mode .coming-soon-modal-overlay {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        
+        /* Modal container - centered, rounded, with shadow */
+        .coming-soon-modal-container {
+            background-color: var(--bg-color);
+            border-radius: 12px; /* Rounded corners */
+            box-shadow: 0 8px 32px rgba(43, 31, 56, 0.2); /* Drop shadow */
+            padding: 32px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            animation: modalFadeIn 0.3s ease;
+            border: 1px solid rgba(43, 31, 56, 0.1);
+        }
+        
+        /* Dark mode modal container */
+        body.dark-mode .coming-soon-modal-container {
+            border-color: rgba(249, 243, 239, 0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Fade-in animation for the modal */
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        /* Modal title */
+        .coming-soon-modal-title {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 24px;
+            color: var(--text-color);
+            margin-bottom: 16px;
+            margin-top: 0;
+        }
+        
+        /* Modal message text */
+        .coming-soon-modal-message {
+            font-size: 14px;
+            line-height: 20px;
+            color: var(--text-color);
+            margin-bottom: 24px;
+            margin-top: 0;
+        }
+        
+        /* Button container - flexbox for side-by-side buttons */
+        .coming-soon-modal-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* Base button styles */
+        .coming-soon-modal-button {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: 1px solid;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+            min-width: 120px;
+        }
+        
+        /* Primary button - Email me */
+        .coming-soon-modal-button-primary {
+            background-color: var(--accent-red);
+            color: #FFFFFF;
+            border-color: var(--accent-red);
+        }
+        
+        .coming-soon-modal-button-primary:hover {
+            background-color: var(--accent-red);
+            opacity: 0.9;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(231, 76, 88, 0.3);
+        }
+        
+        body.dark-mode .coming-soon-modal-button-primary {
+            background-color: var(--accent-red);
+            border-color: var(--accent-red);
+        }
+        
+        body.dark-mode .coming-soon-modal-button-primary:hover {
+            box-shadow: 0 4px 12px rgba(167, 139, 250, 0.4);
+        }
+        
+        /* Secondary button - Close */
+        .coming-soon-modal-button-secondary {
+            background-color: transparent;
+            color: var(--text-color);
+            border-color: rgba(43, 31, 56, 0.15);
+        }
+        
+        .coming-soon-modal-button-secondary:hover {
+            background-color: rgba(43, 31, 56, 0.05);
+            border-color: rgba(43, 31, 56, 0.25);
+        }
+        
+        body.dark-mode .coming-soon-modal-button-secondary {
+            border-color: rgba(249, 243, 239, 0.2);
+        }
+        
+        body.dark-mode .coming-soon-modal-button-secondary:hover {
+            background-color: rgba(249, 243, 239, 0.1);
+            border-color: rgba(249, 243, 239, 0.3);
+        }
+        
+        /* Responsive adjustments for modal */
+        @media (max-width: 768px) {
+            .coming-soon-modal-container {
+                padding: 24px;
+                max-width: 90%;
+            }
+            
+            .coming-soon-modal-title {
+                font-size: 15px;
+                line-height: 22px;
+                margin-bottom: 12px;
+            }
+            
+            .coming-soon-modal-message {
+                font-size: 13px;
+            }
+            
+            .coming-soon-modal-buttons {
+                flex-direction: column;
+            }
+            
+            .coming-soon-modal-button {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1043,7 +1219,7 @@
 
         <!-- NEXT NAVIGATION -->
         <div class="nav-next">
-            <a href="https://mary-daniel-portfolio.webflow.io/" target="_blank" class="nav-link">[Next project&gt;]</a>
+            <a href="https://mary-daniel-portfolio.webflow.io/" target="_blank" class="nav-link">Next project</a>
         </div>
 
     </div>
@@ -1055,6 +1231,22 @@
         <div class="image-modal-container" id="imageModalContainer">
             <button class="image-modal-close" id="imageModalClose" aria-label="Close modal">×</button>
             <img class="image-modal-image" id="imageModalImage" src="" alt="Enlarged image">
+        </div>
+    </div>
+
+    <!-- ========================================
+         COMING SOON MODAL
+         ======================================== -->
+    <div class="coming-soon-modal-overlay" id="comingSoonModalOverlay">
+        <div class="coming-soon-modal-container" id="comingSoonModalContainer">
+            <h1 class="coming-soon-modal-title">🛠️ This project is still being polished.</h1>
+            <p class="coming-soon-modal-message">
+                The case study isn't public yet — but if you're hiring or want to see it in private, feel free to reach out.
+            </p>
+            <div class="coming-soon-modal-buttons">
+                <button class="coming-soon-modal-button coming-soon-modal-button-primary" id="copyEmailButton">Copy email address</button>
+                <button class="coming-soon-modal-button coming-soon-modal-button-secondary" id="comingSoonModalClose">Close</button>
+            </div>
         </div>
     </div>
 
@@ -1277,6 +1469,149 @@
         // Prevent closing when clicking on the image itself
         if (imageModalContainer) {
             imageModalContainer.addEventListener('click', function(e) {
+                e.stopPropagation(); // Stop the click from reaching the overlay
+            });
+        }
+
+        /* ========================================
+           COMING SOON MODAL SYSTEM
+           ======================================== */
+        
+        // Get modal elements
+        const comingSoonModalOverlay = document.getElementById('comingSoonModalOverlay');
+        const comingSoonModalClose = document.getElementById('comingSoonModalClose');
+        const comingSoonModalContainer = document.getElementById('comingSoonModalContainer');
+        const copyEmailButton = document.getElementById('copyEmailButton');
+        
+        // Email address to copy
+        const emailAddress = 'marydaniel.product@gmail.com';
+        
+        // Function to copy email address to clipboard
+        function copyEmailToClipboard() {
+            // Use the modern Clipboard API
+            navigator.clipboard.writeText(emailAddress).then(function() {
+                // Success - show "Copied!" feedback
+                const originalText = copyEmailButton.textContent;
+                copyEmailButton.textContent = 'Copied!';
+                
+                // Restore original text after 3 seconds
+                setTimeout(function() {
+                    copyEmailButton.textContent = originalText;
+                }, 3000);
+            }).catch(function(err) {
+                // Fallback for older browsers - create a temporary textarea
+                const textarea = document.createElement('textarea');
+                textarea.value = emailAddress;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                
+                try {
+                    document.execCommand('copy');
+                    // Success - show "Copied!" feedback
+                    const originalText = copyEmailButton.textContent;
+                    copyEmailButton.textContent = 'Copied!';
+                    
+                    // Restore original text after 3 seconds
+                    setTimeout(function() {
+                        copyEmailButton.textContent = originalText;
+                    }, 3000);
+                } catch (err) {
+                    console.error('Failed to copy email:', err);
+                }
+                
+                document.body.removeChild(textarea);
+            });
+        }
+        
+        // Add click handler to copy email button
+        if (copyEmailButton) {
+            copyEmailButton.addEventListener('click', function(e) {
+                e.stopPropagation(); // Prevent modal from closing
+                copyEmailToClipboard();
+            });
+        }
+        
+        // Function to open the coming soon modal
+        function openComingSoonModal() {
+            // Reset button text to original in case it was showing "Copied!"
+            if (copyEmailButton) {
+                copyEmailButton.textContent = 'Copy email address';
+            }
+            
+            // Show the modal by adding 'active' class
+            comingSoonModalOverlay.classList.add('active');
+            
+            // Prevent body scrolling when modal is open
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Function to close the coming soon modal
+        function closeComingSoonModal() {
+            // Hide the modal by removing 'active' class
+            comingSoonModalOverlay.classList.remove('active');
+            
+            // Restore body scrolling
+            document.body.style.overflow = '';
+        }
+        
+        // Intercept clicks on "Next Project" links and any future case study links
+        // Find all navigation links that might lead to future case studies
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Check if this is a "Next Project" link or a link to a future case study
+                // We'll intercept links that:
+                // 1. Contain "Next project" or "next project" in their text
+                // 2. Or link to external portfolio sites (like webflow.io)
+                // 3. Or have a class/data attribute indicating they're future case studies
+                const linkText = this.textContent.toLowerCase();
+                const linkHref = this.getAttribute('href');
+                
+                // Check if it's a "Next Project" link or external portfolio link
+                if (linkText.includes('next project') || 
+                    (linkHref && (linkHref.includes('webflow.io') || linkHref.includes('portfolio')))) {
+                    // Prevent default navigation
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Show the coming soon modal instead
+                    openComingSoonModal();
+                }
+            });
+        });
+        
+        // Close modal when clicking the Close button
+        if (comingSoonModalClose) {
+            comingSoonModalClose.addEventListener('click', function(e) {
+                e.stopPropagation();
+                closeComingSoonModal();
+            });
+        }
+        
+        // Close modal when clicking on the overlay (dark background)
+        if (comingSoonModalOverlay) {
+            comingSoonModalOverlay.addEventListener('click', function(e) {
+                // Only close if clicking directly on overlay, not on the modal container
+                if (e.target === comingSoonModalOverlay) {
+                    closeComingSoonModal();
+                }
+            });
+        }
+        
+        // Close modal when pressing Escape key
+        document.addEventListener('keydown', function(e) {
+            // Check if Escape key was pressed and coming soon modal is open
+            if (e.key === 'Escape' && comingSoonModalOverlay.classList.contains('active')) {
+                closeComingSoonModal();
+            }
+        });
+        
+        // Prevent closing when clicking on the modal container itself
+        if (comingSoonModalContainer) {
+            comingSoonModalContainer.addEventListener('click', function(e) {
                 e.stopPropagation(); // Stop the click from reaching the overlay
             });
         }
