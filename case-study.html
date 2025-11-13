@@ -21,13 +21,13 @@
            CSS VARIABLES - Color System
            ======================================== */
         :root {
-            --bg-color: #F9F3EF;
-            --text-color: #2B1F38;
-            --text-muted: rgba(43, 31, 56, 0.5);
-            --photo-bg: #e0e0e0;
-            --accent-red: #E74C58;
-            --toggle-bg: rgba(43, 31, 56, 0.1);
-            --toggle-icon: #2B1F38;
+            --bg-color: #F5F7FA;
+            --text-color: #0A1628;
+            --text-muted: rgba(107, 122, 143, 0.7);
+            --photo-bg: #B8C5D6;
+            --accent-red: #2E5C8A;
+            --toggle-bg: rgba(10, 22, 40, 0.1);
+            --toggle-icon: #0A1628;
             --outcome-bg-green: #4c674c;
             --outcome-bg-yellow: #9d8716;
             --outcome-bg-brown: #66624d;
@@ -54,10 +54,10 @@
             top: 0;
             bottom: 0;
             width: 240px; /* Fixed width for sidebar */
-            background-color: rgba(249, 243, 239, 0.6); /* Slightly darker tint for contrast */
+            background-color: rgba(245, 247, 250, 0.6); /* Slightly darker tint for contrast */
             backdrop-filter: blur(10px); /* Subtle blur effect */
-            border-right: 1px solid rgba(43, 31, 56, 0.15);
-            box-shadow: 4px 0 20px rgba(43, 31, 56, 0.08); /* Soft drop shadow */
+            border-right: 1px solid rgba(10, 22, 40, 0.15);
+            box-shadow: 4px 0 20px rgba(10, 22, 40, 0.08); /* Soft drop shadow */
             padding: 80px 24px 32px 24px; /* Top, right, bottom, left - matches cover-letter padding */
             overflow-y: auto; /* Allow scrolling if content is too long */
             overflow-x: hidden; /* Hide horizontal overflow when collapsed */
@@ -121,7 +121,7 @@
             width: 36px;
             height: 36px;
             background-color: var(--bg-color);
-            border: 1px solid rgba(43, 31, 56, 0.1);
+            border: 1px solid rgba(10, 22, 40, 0.1);
             border-radius: 8px;
             cursor: pointer;
             display: flex;
@@ -137,8 +137,8 @@
 
         /* Hover effect on toggle button */
         .sidebar-toggle:hover {
-            background-color: rgba(43, 31, 56, 0.05);
-            border-color: rgba(43, 31, 56, 0.15);
+            background-color: rgba(10, 22, 40, 0.05);
+            border-color: rgba(10, 22, 40, 0.15);
         }
 
         body.dark-mode .sidebar-toggle {
@@ -146,7 +146,7 @@
         }
 
         body.dark-mode .sidebar-toggle:hover {
-            background-color: rgba(249, 243, 239, 0.05);
+            background-color: rgba(245, 247, 250, 0.05);
             border-color: rgba(249, 243, 239, 0.15);
         }
 
@@ -244,7 +244,7 @@
 
         body.dark-mode .sidebar-toggle-tooltip {
             background-color: rgba(255, 255, 255, 0.95);
-            color: #2B1F38;
+            color: #0A1628;
         }
 
         body.dark-mode .sidebar-toggle-tooltip::after {
@@ -292,11 +292,11 @@
 
         /* Hover effect on navigation items */
         .sidebar-nav-link:hover {
-            background-color: rgba(43, 31, 56, 0.05);
+            background-color: rgba(10, 22, 40, 0.05);
         }
 
         body.dark-mode .sidebar-nav-link:hover {
-            background-color: rgba(249, 243, 239, 0.05);
+            background-color: rgba(245, 247, 250, 0.05);
         }
 
         /* Icon styling - simple text icons */
@@ -367,18 +367,18 @@
 
         /* Hover effect on nested items */
         .sidebar-nav-sublink:hover {
-            background-color: rgba(43, 31, 56, 0.05);
+            background-color: rgba(10, 22, 40, 0.05);
             color: var(--text-color);
         }
 
         body.dark-mode .sidebar-nav-sublink:hover {
-            background-color: rgba(249, 243, 239, 0.05);
+            background-color: rgba(245, 247, 250, 0.05);
         }
 
         /* Active/selected state for navigation items */
         .sidebar-nav-link.active,
         .sidebar-nav-sublink.active {
-            background-color: rgba(43, 31, 56, 0.08);
+            background-color: rgba(10, 22, 40, 0.08);
             color: var(--text-color);
             font-weight: 700;
         }
@@ -415,7 +415,7 @@
             margin-top: auto; /* Push footer to bottom */
             padding-top: 32px; /* Increased spacing above footer */
             padding-bottom: 8px; /* Add bottom padding */
-            border-top: 1px solid rgba(43, 31, 56, 0.2); /* More prominent divider */
+            border-top: 1px solid rgba(10, 22, 40, 0.2); /* More prominent divider */
             display: flex;
             flex-direction: column;
             gap: 6px; /* Increased gap between footer lines */
@@ -427,7 +427,7 @@
 
         .sidebar-footer-text {
             font-size: 10px;
-            color: rgba(43, 31, 56, 0.7); /* Darker gray for better readability */
+            color: rgba(10, 22, 40, 0.7); /* Darker gray for better readability */
             margin: 0;
             line-height: 1.5; /* Better line height for readability */
             text-align: left;
@@ -438,7 +438,7 @@
         }
 
         .sidebar-footer-link {
-            color: rgba(43, 31, 56, 0.7); /* Match footer text color */
+            color: rgba(10, 22, 40, 0.7); /* Match footer text color */
             text-decoration: underline;
             transition: color 0.2s ease;
         }
@@ -494,14 +494,14 @@
         }
 
         .nav-link:hover {
-            background-color: rgba(43, 31, 56, 0.08);
-            border-color: rgba(43, 31, 56, 0.25);
+            background-color: rgba(10, 22, 40, 0.08);
+            border-color: rgba(10, 22, 40, 0.25);
             transform: translateX(2px);
         }
 
         body.dark-mode .nav-link {
             border-color: rgba(249, 243, 239, 0.2);
-            background-color: rgba(249, 243, 239, 0.05);
+            background-color: rgba(245, 247, 250, 0.05);
         }
 
         body.dark-mode .nav-link:hover {
@@ -529,10 +529,10 @@
             align-items: center;
             justify-content: space-between;
             background-color: #FCFCFC; /* Light background matching design */
-            border: 1px solid rgba(43, 31, 56, 0.1);
+            border: 1px solid rgba(10, 22, 40, 0.1);
             border-radius: 8px; /* Rounded corners */
             padding: 20px 24px;
-            box-shadow: 0 2px 8px rgba(43, 31, 56, 0.08); /* Soft shadow */
+            box-shadow: 0 2px 8px rgba(10, 22, 40, 0.08); /* Soft shadow */
             text-decoration: none;
             color: var(--text-color);
             transition: all 0.2s ease;
@@ -540,18 +540,18 @@
         }
 
         .figma-handoff-card:hover {
-            box-shadow: 0 4px 12px rgba(43, 31, 56, 0.12);
+            box-shadow: 0 4px 12px rgba(10, 22, 40, 0.12);
             transform: translateY(-1px);
-            background-color: rgba(43, 31, 56, 0.02);
+            background-color: rgba(10, 22, 40, 0.02);
         }
 
         body.dark-mode .figma-handoff-card {
-            background-color: rgba(249, 243, 239, 0.03);
+            background-color: rgba(245, 247, 250, 0.03);
             border-color: rgba(249, 243, 239, 0.15);
         }
 
         body.dark-mode .figma-handoff-card:hover {
-            background-color: rgba(249, 243, 239, 0.05);
+            background-color: rgba(245, 247, 250, 0.05);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
@@ -575,7 +575,7 @@
             justify-content: center;
             width: 40px;
             height: 40px;
-            background-color: rgba(43, 31, 56, 0.05);
+            background-color: rgba(10, 22, 40, 0.05);
             border-radius: 6px;
             flex-shrink: 0;
             transition: all 0.2s ease;
@@ -583,7 +583,7 @@
         }
 
         .figma-handoff-card:hover .figma-handoff-icon {
-            background-color: rgba(43, 31, 56, 0.1);
+            background-color: rgba(10, 22, 40, 0.1);
             transform: scale(1.05);
         }
 
@@ -621,8 +621,8 @@
             height: 1px;
             background: linear-gradient(to right, 
                 transparent, 
-                rgba(43, 31, 56, 0.1) 20%, 
-                rgba(43, 31, 56, 0.1) 80%, 
+                rgba(10, 22, 40, 0.1) 20%, 
+                rgba(10, 22, 40, 0.1) 80%, 
                 transparent
             );
             opacity: 0;
@@ -1015,7 +1015,7 @@
 
         body.dark-mode .toggle-tooltip {
             background-color: rgba(255, 255, 255, 0.95);
-            color: #2B1F38;
+            color: #0A1628;
         }
 
         body.dark-mode .toggle-tooltip::before {
@@ -1181,7 +1181,7 @@
             align-items: center;
             justify-content: center;
             font-size: 20px;
-            color: #2B1F38;
+            color: #0A1628;
             font-family: 'JetBrains Mono', monospace;
             font-weight: 700;
             transition: background-color 0.2s ease, transform 0.2s ease;
@@ -1326,7 +1326,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(43, 31, 56, 0.4); /* Soft, semi-transparent background */
+            background-color: rgba(10, 22, 40, 0.4); /* Soft, semi-transparent background */
             z-index: 3000; /* Higher than other elements */
             display: flex;
             align-items: center;
@@ -1353,13 +1353,13 @@
         .coming-soon-modal-container {
             background-color: var(--bg-color);
             border-radius: 12px; /* Rounded corners */
-            box-shadow: 0 8px 32px rgba(43, 31, 56, 0.2); /* Drop shadow */
+            box-shadow: 0 8px 32px rgba(10, 22, 40, 0.2); /* Drop shadow */
             padding: 32px;
             max-width: 400px;
             width: 100%;
             text-align: center;
             animation: modalFadeIn 0.3s ease;
-            border: 1px solid rgba(43, 31, 56, 0.1);
+            border: 1px solid rgba(10, 22, 40, 0.1);
         }
         
         /* Dark mode modal container */
@@ -1432,7 +1432,7 @@
             background-color: var(--accent-red);
             opacity: 0.9;
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(231, 76, 88, 0.3);
+            box-shadow: 0 4px 12px rgba(46, 92, 138, 0.3);
         }
         
         body.dark-mode .coming-soon-modal-button-primary {
@@ -1448,12 +1448,12 @@
         .coming-soon-modal-button-secondary {
             background-color: transparent;
             color: var(--text-color);
-            border-color: rgba(43, 31, 56, 0.15);
+            border-color: rgba(10, 22, 40, 0.15);
         }
         
         .coming-soon-modal-button-secondary:hover {
-            background-color: rgba(43, 31, 56, 0.05);
-            border-color: rgba(43, 31, 56, 0.25);
+            background-color: rgba(10, 22, 40, 0.05);
+            border-color: rgba(10, 22, 40, 0.25);
         }
         
         body.dark-mode .coming-soon-modal-button-secondary {
