@@ -21,13 +21,13 @@
            CSS VARIABLES - Color System
            ======================================== */
         :root {
-            --bg-color: #F9F3EF;
-            --text-color: #2B1F38;
-            --text-muted: rgba(43, 31, 56, 0.5);
-            --photo-bg: #e0e0e0;
-            --accent-red: #E74C58;
-            --toggle-bg: rgba(43, 31, 56, 0.1);
-            --toggle-icon: #2B1F38;
+            --bg-color: #F5F7FA;
+            --text-color: #0A1628;
+            --text-muted: rgba(107, 122, 143, 0.7);
+            --photo-bg: #B8C5D6;
+            --accent-red: #2E5C8A;
+            --toggle-bg: rgba(10, 22, 40, 0.1);
+            --toggle-icon: #0A1628;
         }
 
         body.dark-mode {
@@ -51,10 +51,10 @@
             top: 0;
             bottom: 0;
             width: 240px; /* Fixed width for sidebar */
-            background-color: rgba(249, 243, 239, 0.6); /* Slightly darker tint for contrast */
+            background-color: rgba(245, 247, 250, 0.6); /* Slightly darker tint for contrast */
             backdrop-filter: blur(10px); /* Subtle blur effect */
-            border-right: 1px solid rgba(43, 31, 56, 0.15);
-            box-shadow: 4px 0 20px rgba(43, 31, 56, 0.08); /* Soft drop shadow */
+            border-right: 1px solid rgba(10, 22, 40, 0.15);
+            box-shadow: 4px 0 20px rgba(10, 22, 40, 0.08); /* Soft drop shadow */
             padding: 80px 24px 32px 24px; /* Increased horizontal padding for better spacing */
             overflow-y: auto; /* Allow scrolling if content is too long */
             overflow-x: hidden; /* Hide horizontal overflow when collapsed */
@@ -122,7 +122,7 @@
             width: 36px;
             height: 36px;
             background-color: var(--bg-color);
-            border: 1px solid rgba(43, 31, 56, 0.1);
+            border: 1px solid rgba(10, 22, 40, 0.1);
             border-radius: 8px;
             cursor: pointer;
             display: flex;
@@ -140,8 +140,8 @@
 
         /* Hover effect on toggle button */
         .sidebar-toggle:hover {
-            background-color: rgba(43, 31, 56, 0.05);
-            border-color: rgba(43, 31, 56, 0.15);
+            background-color: rgba(10, 22, 40, 0.05);
+            border-color: rgba(10, 22, 40, 0.15);
         }
 
         body.dark-mode .sidebar-toggle {
@@ -149,7 +149,7 @@
         }
 
         body.dark-mode .sidebar-toggle:hover {
-            background-color: rgba(249, 243, 239, 0.05);
+            background-color: rgba(245, 247, 250, 0.05);
             border-color: rgba(249, 243, 239, 0.15);
         }
 
@@ -232,7 +232,7 @@
 
         body.dark-mode .sidebar-toggle-tooltip {
             background-color: rgba(255, 255, 255, 0.95);
-            color: #2B1F38;
+            color: #0A1628;
         }
 
         body.dark-mode .sidebar-toggle-tooltip::after {
@@ -280,11 +280,11 @@
 
         /* Hover effect on navigation items */
         .sidebar-nav-link:hover {
-            background-color: rgba(43, 31, 56, 0.05);
+            background-color: rgba(10, 22, 40, 0.05);
         }
 
         body.dark-mode .sidebar-nav-link:hover {
-            background-color: rgba(249, 243, 239, 0.05);
+            background-color: rgba(245, 247, 250, 0.05);
         }
 
         /* Icon styling - simple text icons */
@@ -366,18 +366,18 @@
 
         /* Hover effect on nested items */
         .sidebar-nav-sublink:hover {
-            background-color: rgba(43, 31, 56, 0.05);
+            background-color: rgba(10, 22, 40, 0.05);
             color: var(--text-color);
         }
 
         body.dark-mode .sidebar-nav-sublink:hover {
-            background-color: rgba(249, 243, 239, 0.05);
+            background-color: rgba(245, 247, 250, 0.05);
         }
 
         /* Active/selected state for navigation items */
         .sidebar-nav-link.active,
         .sidebar-nav-sublink.active {
-            background-color: rgba(43, 31, 56, 0.08);
+            background-color: rgba(10, 22, 40, 0.08);
             color: var(--text-color);
             font-weight: 700;
         }
@@ -414,7 +414,7 @@
             margin-top: auto; /* Push footer to bottom */
             padding-top: 32px; /* Increased spacing above footer */
             padding-bottom: 8px; /* Add bottom padding */
-            border-top: 1px solid rgba(43, 31, 56, 0.2); /* More prominent divider */
+            border-top: 1px solid rgba(10, 22, 40, 0.2); /* More prominent divider */
             display: flex;
             flex-direction: column;
             gap: 6px; /* Increased gap between footer lines */
@@ -426,7 +426,7 @@
 
         .sidebar-footer-text {
             font-size: 10px;
-            color: rgba(43, 31, 56, 0.7); /* Darker gray for better readability */
+            color: rgba(10, 22, 40, 0.7); /* Darker gray for better readability */
             margin: 0;
             line-height: 1.5; /* Better line height for readability */
             text-align: left;
@@ -437,7 +437,7 @@
         }
 
         .sidebar-footer-link {
-            color: rgba(43, 31, 56, 0.7); /* Match footer text color */
+            color: rgba(10, 22, 40, 0.7); /* Match footer text color */
             text-decoration: underline;
             transition: color 0.2s ease;
         }
@@ -463,8 +463,8 @@
             padding: 60px 32px 32px 280px; /* Left padding increased to account for sidebar (240px + 40px margin) */
             font-size: 12px;
             line-height: 20px;
-            height: 100vh;
-            overflow: hidden; /* Prevent scrolling */
+            /* Removed height: 100vh and overflow: hidden to allow full-page scrolling */
+            min-height: 100vh; /* Minimum height is viewport, but can grow */
             transition: background-color 0.3s ease,
                         color 0.3s ease,
                         padding-left 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -480,10 +480,11 @@
             max-width: 650px;
             margin: 0 auto;
             position: relative;
-            height: 100%;
+            /* Removed height: 100% to allow container to grow with content */
+            min-height: 100vh; /* Minimum height is viewport, but can grow */
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            /* Removed justify-content: space-between - let content flow naturally */
         }
 
         /* HEADER SECTION */
@@ -520,7 +521,7 @@
             left: 0;
             width: 172px;
             height: 172px;
-            background-color: #AD9585;
+            background-color: #6B7A8F;
             z-index: -1;
             opacity: 0;
             transition: opacity 0.3s ease, transform 0.3s ease;
@@ -637,7 +638,7 @@
 
         body.dark-mode .photo-tooltip {
             background-color: rgba(255, 255, 255, 0.95);
-            color: #2B1F38;
+            color: #0A1628;
         }
 
         body.dark-mode .photo-tooltip::after {
@@ -759,8 +760,54 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
-            flex: 1;
-            overflow-y: auto; /* Allow scrolling within content if needed */
+            /* Removed flex: 1 and overflow-y: auto - let content flow naturally with page */
+            /* Removed max-height constraint - content can be as tall as needed */
+            /* Add padding-right for spacing */
+            padding-right: 8px;
+            /* Custom scrollbar styling removed - page scrolls instead of content area */
+        }
+
+        /* Custom scrollbar for WebKit browsers (Chrome, Safari, Edge) */
+        .letter-content::-webkit-scrollbar {
+            width: 10px; /* Slightly wider scrollbar for better visibility */
+        }
+
+        .letter-content::-webkit-scrollbar-track {
+            background: transparent; /* Transparent track */
+        }
+
+        .letter-content::-webkit-scrollbar-thumb {
+            background-color: rgba(10, 22, 40, 0.6); /* Scrollbar thumb color - more visible */
+            border-radius: 5px;
+            opacity: 0; /* Hidden by default */
+            /* Smooth fade transition: 0.4s for a more noticeable fade effect */
+            transition: opacity 0.4s ease, background-color 0.3s ease;
+        }
+        
+
+        /* Dark mode scrollbar */
+        body.dark-mode .letter-content::-webkit-scrollbar-thumb {
+            background-color: rgba(249, 243, 239, 0.6); /* More visible in dark mode */
+        }
+
+        /* Show scrollbar on hover (desktop) or when focused/tapped */
+        .letter-content.show-scrollbar::-webkit-scrollbar-thumb {
+            opacity: 1 !important; /* Force visible when class is added */
+            background-color: rgba(10, 22, 40, 0.8) !important; /* Even more visible when shown - darker */
+        }
+        
+        /* Dark mode - make scrollbar more visible when shown */
+        body.dark-mode .letter-content.show-scrollbar::-webkit-scrollbar-thumb {
+            background-color: rgba(249, 243, 239, 0.8) !important; /* More visible in dark mode - brighter */
+        }
+
+        /* Firefox scrollbar visibility */
+        .letter-content.show-scrollbar {
+            scrollbar-color: rgba(10, 22, 40, 0.7) transparent !important; /* Firefox - more visible when class is added */
+        }
+
+        body.dark-mode .letter-content.show-scrollbar {
+            scrollbar-color: rgba(249, 243, 239, 0.7) transparent !important; /* Firefox dark mode - more visible */
         }
 
         /* GREETING */
@@ -884,15 +931,15 @@
         @keyframes hoverPulse {
             0% {
                 transform: translateY(0);
-                text-shadow: 0 0 0 rgba(255, 0, 0, 0.6);
+                text-shadow: 0 0 0 rgba(46, 92, 138, 0.6);
             }
             50% {
                 transform: translateY(-2px);
-                text-shadow: 0 0 8px rgba(255, 0, 0, 0.4);
+                text-shadow: 0 0 8px rgba(46, 92, 138, 0.4);
             }
             100% {
                 transform: translateY(0);
-                text-shadow: 0 0 0 rgba(255, 0, 0, 0.6);
+                text-shadow: 0 0 0 rgba(46, 92, 138, 0.6);
             }
         }
         
@@ -1019,7 +1066,7 @@
 
         body.dark-mode .toggle-tooltip {
             background-color: rgba(255, 255, 255, 0.95);
-            color: #2B1F38;
+            color: #0A1628;
         }
 
         body.dark-mode .toggle-tooltip::before {
@@ -1070,11 +1117,11 @@
             min-width: 280px;
             max-width: 650px; /* Match page content width */
             background-color: var(--bg-color);
-            border: 1px solid rgba(43, 31, 56, 0.1);
+            border: 1px solid rgba(10, 22, 40, 0.1);
             border-left: none;
             border-radius: 0 0 12px 0;
             padding: 0;
-            box-shadow: 4px 4px 20px rgba(43, 31, 56, 0.1);
+            box-shadow: 4px 4px 20px rgba(10, 22, 40, 0.1);
             /* Hidden state */
             opacity: 0;
             max-width: 0;
@@ -1122,11 +1169,11 @@
 
         /* Hover effect on individual links */
         .cta-panel-link:hover {
-            background-color: rgba(43, 31, 56, 0.02);
+            background-color: rgba(10, 22, 40, 0.02);
         }
 
         body.dark-mode .cta-panel-link:hover {
-            background-color: rgba(249, 243, 239, 0.03);
+            background-color: rgba(245, 247, 250, 0.03);
         }
 
         /* Arrow icon in panel links */
@@ -1176,10 +1223,10 @@
             width: 100%;
             max-width: 650px; /* Match container width */
             background-color: var(--bg-color);
-            border: 1px solid rgba(43, 31, 56, 0.1);
+            border: 1px solid rgba(10, 22, 40, 0.1);
             border-radius: 0 0 12px 12px; /* Round bottom corners */
             padding: 12px 20px;
-            box-shadow: 0 4px 20px rgba(43, 31, 56, 0.1);
+            box-shadow: 0 4px 20px rgba(10, 22, 40, 0.1);
             cursor: pointer;
             font-family: 'JetBrains Mono', monospace;
             font-size: 12px;
@@ -1251,11 +1298,11 @@
         }
 
         .cta-teaser:hover {
-            background-color: rgba(43, 31, 56, 0.02);
+            background-color: rgba(10, 22, 40, 0.02);
         }
 
         body.dark-mode .cta-teaser:hover {
-            background-color: rgba(249, 243, 239, 0.03);
+            background-color: rgba(245, 247, 250, 0.03);
         }
 
         /* Medium screens: Adjust panel to prevent overflow */
@@ -1300,11 +1347,11 @@
                 min-width: auto;
                 height: auto; /* Allow height to grow with content */
                 /* Border adjustments for bottom positioning */
-                border-left: 1px solid rgba(43, 31, 56, 0.1);
+                border-left: 1px solid rgba(10, 22, 40, 0.1);
                 border-top: none; /* No top border since it connects to teaser */
                 border-radius: 0 0 12px 12px; /* Rounded bottom corners */
                 padding: 0;
-                box-shadow: 0 4px 20px rgba(43, 31, 56, 0.1); /* Shadow below */
+                box-shadow: 0 4px 20px rgba(10, 22, 40, 0.1); /* Shadow below */
                 /* Hidden state for mobile */
                 max-height: 0;
                 overflow: hidden;
@@ -1505,7 +1552,7 @@
             align-items: center;
             justify-content: center;
             font-size: 20px;
-            color: #2B1F38;
+            color: #0A1628;
             font-family: 'JetBrains Mono', monospace;
             font-weight: 700;
             transition: background-color 0.2s ease, transform 0.2s ease;
@@ -1595,9 +1642,13 @@
 
             .letter-content {
                 max-width: 100%;
-                height: auto;
-                min-height: auto;
+                /* Removed height constraints - content flows naturally with page scroll */
                 gap: 10px;
+                /* Improved padding for small screens */
+                padding-right: 12px;
+                padding-left: 0;
+                padding-top: 0;
+                padding-bottom: 0;
             }
 
             .letter-content p {
@@ -1635,7 +1686,7 @@
             .footer {
                 margin-top: 24px; /* Spacing between footer and signature on mobile */
                 padding-top: 16px;
-                border-top: 1px solid rgba(43, 31, 56, 0.1); /* Add border on mobile */
+                border-top: 1px solid rgba(10, 22, 40, 0.1); /* Add border on mobile */
                 align-items: flex-start; /* Left-align on mobile, matching signature section */
                 width: 100%; /* Full width on mobile */
             }
@@ -1671,6 +1722,20 @@
 
             .greeting {
                 font-size: 11px;
+            }
+        }
+
+        /* Very small screens - additional spacing improvements */
+        @media (max-width: 480px) {
+            .letter-content {
+                /* Removed height constraints - content flows naturally with page scroll */
+                padding-right: 16px;
+                gap: 8px; /* Tighter gap between paragraphs */
+            }
+            
+            .letter-content p {
+                font-size: 10px;
+                line-height: 16px;
             }
         }
 
@@ -1882,7 +1947,7 @@
         <div class="date">Nov 12, 2025</div>
 
         <!-- LETTER CONTENT -->
-        <div class="letter-content" id="letterContent">
+        <div class="letter-content" id="letterContent" tabindex="0" role="region" aria-label="Cover letter content">
             <div class="skeleton-loader" id="skeletonLoader">
                 <div class="skeleton-paragraph">
                     <div class="skeleton-line short"></div>
@@ -2609,6 +2674,181 @@
                 e.preventDefault();
                 e.stopPropagation();
             });
+        });
+
+        /* ========================================
+           IMPROVED SCROLL BEHAVIOR FOR TEXT CONTENT AREA
+           ======================================== */
+        
+        // Get the letter content element - use a variable that can be updated
+        let letterContentElement = null;
+        let scrollbarTimeout;
+        let isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        let scrollbarListenersAttached = false; // Prevent duplicate event listeners
+        
+        // Function to check if content overflows
+        function checkContentOverflow() {
+            if (!letterContentElement) return false;
+            // Check if scrollHeight is greater than clientHeight (content overflows)
+            return letterContentElement.scrollHeight > letterContentElement.clientHeight;
+        }
+        
+        // Function to show scrollbar
+        function showScrollbar() {
+            if (!letterContentElement || !checkContentOverflow()) return;
+            
+            // Clear any existing timeout
+            if (scrollbarTimeout) {
+                clearTimeout(scrollbarTimeout);
+            }
+            
+            // Add class to show scrollbar
+            letterContentElement.classList.add('show-scrollbar');
+            console.log('Scrollbar shown - hover detected!'); // Debug log
+            console.log('Element classes:', letterContentElement.className); // Debug: check if class was added
+            console.log('Has show-scrollbar class?', letterContentElement.classList.contains('show-scrollbar')); // Debug
+        }
+        
+        // Function to hide scrollbar with delay
+        function hideScrollbar() {
+            if (!letterContentElement) return;
+            
+            // Clear any existing timeout
+            if (scrollbarTimeout) {
+                clearTimeout(scrollbarTimeout);
+            }
+            
+            // Hide scrollbar after a short delay (auto-hide)
+            scrollbarTimeout = setTimeout(function() {
+                if (letterContentElement) {
+                    letterContentElement.classList.remove('show-scrollbar');
+                }
+            }, 1000); // Hide after 1 second of inactivity
+        }
+        
+        // Initialize: Check overflow on page load and resize
+        function initScrollbarBehavior() {
+            // Get the element if we don't have it yet
+            if (!letterContentElement) {
+                letterContentElement = document.getElementById('letterContent');
+            }
+            
+            if (!letterContentElement || scrollbarListenersAttached) {
+                console.log('Cannot initialize scrollbar - element:', letterContentElement, 'listeners attached:', scrollbarListenersAttached);
+                return;
+            }
+            
+            // Mark listeners as attached to prevent duplicates
+            scrollbarListenersAttached = true;
+            
+            console.log('Initializing scrollbar behavior on element:', letterContentElement);
+            
+            // Check overflow on load
+            if (!checkContentOverflow()) {
+                // If no overflow, ensure scrollbar is hidden
+                letterContentElement.classList.remove('show-scrollbar');
+            }
+            
+            // For touch devices: show scrollbar on tap/focus
+            if (isTouchDevice) {
+                // Show scrollbar when user taps into the content area
+                letterContentElement.addEventListener('touchstart', function() {
+                    showScrollbar();
+                }, { passive: true });
+                
+                // Show scrollbar when content gains focus (e.g., keyboard navigation)
+                letterContentElement.addEventListener('focus', function() {
+                    showScrollbar();
+                }, true); // Use capture phase to catch focus events
+                
+                // Hide scrollbar when user taps outside or loses focus
+                letterContentElement.addEventListener('touchend', function() {
+                    hideScrollbar();
+                }, { passive: true });
+                
+                letterContentElement.addEventListener('blur', function() {
+                    hideScrollbar();
+                }, true);
+                
+                // Also show scrollbar while actively scrolling on touch devices
+                letterContentElement.addEventListener('scroll', function() {
+                    showScrollbar();
+                    hideScrollbar(); // Auto-hide after scrolling stops
+                }, { passive: true });
+            } else {
+                // For desktop: show scrollbar on hover
+                letterContentElement.addEventListener('mouseenter', function() {
+                    console.log('Mouse entered letter content area');
+                    showScrollbar();
+                });
+                
+                letterContentElement.addEventListener('mouseleave', function() {
+                    console.log('Mouse left letter content area');
+                    hideScrollbar();
+                });
+                
+                // Show scrollbar when content gains focus (keyboard navigation)
+                letterContentElement.addEventListener('focus', function() {
+                    showScrollbar();
+                }, true);
+                
+                letterContentElement.addEventListener('blur', function() {
+                    hideScrollbar();
+                }, true);
+                
+                // Show scrollbar while actively scrolling
+                letterContentElement.addEventListener('scroll', function() {
+                    showScrollbar();
+                    hideScrollbar(); // Auto-hide after scrolling stops
+                }, { passive: true });
+            }
+        }
+        
+        // Run initialization after DOM is ready
+        // Wait for the element to be available
+        function waitForElement() {
+            const element = document.getElementById('letterContent');
+            if (element) {
+                // Store element reference
+                letterContentElement = element;
+                // Element found, initialize scrollbar behavior
+                initScrollbarBehavior();
+                // Debug: Log scrollbar status
+                console.log('Scrollbar initialized. Content overflows:', checkContentOverflow());
+                console.log('ScrollHeight:', element.scrollHeight, 'ClientHeight:', element.clientHeight);
+            } else {
+                // Element not found yet, try again after a short delay
+                setTimeout(waitForElement, 50);
+            }
+        }
+        
+        // Start waiting for element when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', waitForElement);
+        } else {
+            // DOM is already loaded
+            waitForElement();
+        }
+        
+        // Re-check overflow on window resize (content might change)
+        let scrollbarResizeTimeout;
+        window.addEventListener('resize', function() {
+            clearTimeout(scrollbarResizeTimeout);
+            scrollbarResizeTimeout = setTimeout(function() {
+                // Re-check overflow on resize
+                if (letterContentElement && !checkContentOverflow()) {
+                    letterContentElement.classList.remove('show-scrollbar');
+                }
+            }, 150);
+        });
+        
+        // Also check overflow after content loads (in case of dynamic content)
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                if (letterContentElement && !checkContentOverflow()) {
+                    letterContentElement.classList.remove('show-scrollbar');
+                }
+            }, 100);
         });
 
         /* ========================================
