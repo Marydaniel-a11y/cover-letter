@@ -55,7 +55,7 @@
             backdrop-filter: blur(10px); /* Subtle blur effect */
             border-right: 1px solid rgba(10, 22, 40, 0.15);
             box-shadow: 4px 0 20px rgba(10, 22, 40, 0.08); /* Soft drop shadow */
-            padding: 80px 24px 32px 24px; /* Increased horizontal padding for better spacing */
+            padding: 80px 12px 32px 12px; /* Horizontal padding: 12px */
             overflow-y: auto; /* Allow scrolling if content is too long */
             overflow-x: hidden; /* Hide horizontal overflow when collapsed */
             z-index: 1000; /* Below CTA teaser (1002) and theme toggle (1001) */
@@ -79,14 +79,40 @@
         /* Collapsed state - sidebar shrinks to minimal width */
         .sidebar-nav.collapsed {
             width: 60px; /* Minimal width when collapsed */
-            padding: 80px 8px 32px 8px; /* Reduced horizontal padding */
+            padding: 80px 12px 32px 12px; /* Left/right padding: 12px */
         }
 
-        /* Hide navigation text and content when collapsed */
-        .sidebar-nav.collapsed .sidebar-nav-list {
+        /* When collapsed, hide text and arrows but keep icons visible */
+        .sidebar-nav.collapsed .sidebar-nav-link > span:not(.sidebar-nav-icon),
+        .sidebar-nav.collapsed .sidebar-nav-arrow {
             opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.2s ease;
+            width: 0;
+            overflow: hidden;
+            transition: opacity 0.2s ease, width 0.2s ease;
+        }
+
+        /* Center navigation links when collapsed and keep them clickable */
+        .sidebar-nav.collapsed .sidebar-nav-link {
+            justify-content: center;
+            align-items: center;
+            padding: 0; /* Remove padding when collapsed for tighter active box */
+            gap: 0; /* Remove gap when collapsed */
+            pointer-events: auto; /* Keep links clickable when collapsed */
+            width: 100%; /* Ensure full width for centering */
+        }
+
+        /* Keep icons visible when collapsed and center them */
+        .sidebar-nav.collapsed .sidebar-nav-icon {
+            opacity: 1;
+            margin: 0; /* Remove auto margin - parent handles centering */
+            display: flex; /* Ensure flex display for centering */
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Hide sublists when collapsed */
+        .sidebar-nav.collapsed .sidebar-nav-sublist {
+            display: none;
         }
 
         /* Hide footer when sidebar is collapsed */
@@ -96,11 +122,18 @@
             transition: opacity 0.2s ease;
         }
 
-        /* Show navigation content when expanded */
-        .sidebar-nav:not(.collapsed) .sidebar-nav-list {
+        /* Show navigation text and arrows when expanded */
+        .sidebar-nav:not(.collapsed) .sidebar-nav-link > span:not(.sidebar-nav-icon),
+        .sidebar-nav:not(.collapsed) .sidebar-nav-arrow {
             opacity: 1;
-            pointer-events: auto;
-            transition: opacity 0.3s ease 0.1s; /* Slight delay for smooth reveal */
+            width: auto;
+            transition: opacity 0.3s ease 0.1s, width 0.3s ease 0.1s; /* Slight delay for smooth reveal */
+        }
+
+        /* Restore normal link layout when expanded */
+        .sidebar-nav:not(.collapsed) .sidebar-nav-link {
+            justify-content: flex-start;
+            padding: 10px 12px; /* Restore normal padding when expanded */
         }
 
         /* Show footer when sidebar is expanded */
@@ -250,6 +283,11 @@
             flex: 1; /* Take up available space to push footer down */
         }
 
+        /* Center align items when sidebar is collapsed */
+        .sidebar-nav.collapsed .sidebar-nav-list {
+            align-items: center;
+        }
+
         /* Top-level navigation items */
         .sidebar-nav-item {
             margin: 0;
@@ -298,6 +336,15 @@
             flex-shrink: 0;
             opacity: 0.95; /* More visible */
             line-height: 1; /* Ensure proper alignment */
+        }
+
+        /* SVG icon styling - ensures icons inherit color and display properly */
+        .sidebar-nav-icon svg {
+            width: 100%;
+            height: 100%;
+            color: inherit; /* Inherit color from parent link */
+            stroke: currentColor; /* Use current text color for stroke */
+            fill: currentColor; /* Use current text color for fill (for Figma logo) */
         }
 
         /* Expandable arrow icon for items with nested content */
@@ -380,6 +427,22 @@
             background-color: rgba(10, 22, 40, 0.08);
             color: var(--text-color);
             font-weight: 700;
+        }
+
+        /* Active state when collapsed - smaller, centered box */
+        .sidebar-nav.collapsed .sidebar-nav-link.active {
+            padding: 0; /* No padding for tighter box */
+            justify-content: center;
+            align-items: center;
+            width: 36px; /* Fixed width for active box when collapsed */
+            height: 36px; /* Fixed height for active box when collapsed */
+            margin: 0 auto; /* Center the active box */
+            border-radius: 6px; /* Match the border radius */
+        }
+
+        /* Ensure icon is centered within active box when collapsed */
+        .sidebar-nav.collapsed .sidebar-nav-link.active .sidebar-nav-icon {
+            margin: 0;
         }
 
         body.dark-mode .sidebar-nav-link.active,
@@ -1844,7 +1907,12 @@
             <!-- About Me -->
             <li class="sidebar-nav-item">
                 <a href="cover-letter.html" class="sidebar-nav-link">
-                    <span class="sidebar-nav-icon">👤</span>
+                    <span class="sidebar-nav-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
                     <span>About Me</span>
                 </a>
             </li>
@@ -1852,7 +1920,11 @@
             <!-- Case Studies - Expandable -->
             <li class="sidebar-nav-item" id="caseStudiesItem">
                 <div class="sidebar-nav-link" id="caseStudiesLink">
-                    <span class="sidebar-nav-icon">📁</span>
+                    <span class="sidebar-nav-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
                     <span>Case Studies</span>
                     <span class="sidebar-nav-arrow">▶</span>
                 </div>
@@ -1880,7 +1952,14 @@
             <!-- Figma Handoff - Expandable -->
             <li class="sidebar-nav-item" id="figmaHandoffItem">
                 <div class="sidebar-nav-link" id="figmaHandoffLink">
-                    <span class="sidebar-nav-icon">🎨</span>
+                    <span class="sidebar-nav-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="3" width="6" height="6" rx="1.5" fill="currentColor"/>
+                            <rect x="3" y="11" width="6" height="10" rx="1.5" fill="currentColor"/>
+                            <rect x="11" y="3" width="10" height="6" rx="1.5" fill="currentColor"/>
+                            <rect x="15" y="11" width="6" height="6" rx="1.5" fill="currentColor"/>
+                        </svg>
+                    </span>
                     <span>Figma Handoff</span>
                     <span class="sidebar-nav-arrow">▶</span>
                 </div>
@@ -2635,6 +2714,16 @@
                 e.preventDefault();
                 e.stopPropagation();
                 
+                // If sidebar is collapsed, expand it first
+                if (sidebarNav.classList.contains('collapsed')) {
+                    expandSidebarIfCollapsed();
+                    // Expand the sublist after sidebar expands
+                    setTimeout(function() {
+                        caseStudiesItem.classList.add('expanded');
+                    }, 100);
+                    return;
+                }
+                
                 // Toggle the 'expanded' class on the parent item
                 const isExpanded = caseStudiesItem.classList.contains('expanded');
                 
@@ -2654,6 +2743,16 @@
                 e.preventDefault();
                 e.stopPropagation();
                 
+                // If sidebar is collapsed, expand it first
+                if (sidebarNav.classList.contains('collapsed')) {
+                    expandSidebarIfCollapsed();
+                    // Expand the sublist after sidebar expands
+                    setTimeout(function() {
+                        figmaHandoffItem.classList.add('expanded');
+                    }, 100);
+                    return;
+                }
+                
                 // Toggle the 'expanded' class on the parent item
                 const isExpanded = figmaHandoffItem.classList.contains('expanded');
                 
@@ -2667,6 +2766,31 @@
             });
         }
         
+        // Function to expand sidebar if collapsed
+        function expandSidebarIfCollapsed() {
+            if (sidebarNav.classList.contains('collapsed')) {
+                sidebarNav.classList.remove('collapsed');
+                document.body.classList.remove('sidebar-collapsed');
+                if (sidebarToggleTooltip) {
+                    sidebarToggleTooltip.textContent = 'Close sidebar';
+                }
+                localStorage.setItem('sidebarCollapsed', 'false');
+            }
+        }
+
+        // Add click handlers to all navigation links to expand sidebar when collapsed
+        const allNavLinksWithHref = document.querySelectorAll('.sidebar-nav-link[href], .sidebar-nav-sublink[href]');
+        allNavLinksWithHref.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // If sidebar is collapsed, expand it first
+                if (sidebarNav.classList.contains('collapsed')) {
+                    expandSidebarIfCollapsed();
+                    // Small delay to allow sidebar expansion animation before navigation
+                    // Note: Navigation will proceed normally after this
+                }
+            });
+        });
+
         // Prevent clicks on "coming soon" items from doing anything
         const comingSoonItems = document.querySelectorAll('.sidebar-nav-sublink.coming-soon');
         comingSoonItems.forEach(item => {
